@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speedZ = 10;
-    float rotationSpeed = 180;
+    float speedZ = 12;
+    float rotationSpeed = 540;
     float jumpForce = 15;
 
     private Animator animator;
     private Rigidbody rb;
+    public Transform transformCamera; 
 
     private bool isOnGround;
 
@@ -29,7 +30,9 @@ public class PlayerMovement : MonoBehaviour
         //transform.Translate(Vector3.forward * verticalInput * velZ * Time.deltaTime);
         //transform.Rotate(Vector3.up * horizontalInput * velRot * Time.deltaTime);
 
+
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
         movementDirection.Normalize();
         transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
 
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //transform.forward = movementDirection;  // Para que el personaje se gire
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed*Time.deltaTime);    // Personaje gire mejorado
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed*Time.deltaTime);    // Personaje giro mejorado
             
             animator.SetBool("isMoving", true);
         } else
