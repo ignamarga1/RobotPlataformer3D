@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float speedZ = 10;
-    float rotationSpeed = 540;
+    float rotationSpeed = 180;
     float jumpForce = 15;
 
     private Animator animator;
