@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float speedY;
 
     private Animator animator;
+    private CharacterController characterController;
     public Transform transformCamera;
-    public CharacterController characterController;
 
     private bool isOnGround;
 
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         speedZ = 20;
         rotationSpeed = 720;
-        jumpSpeed = 10;
+        jumpSpeed = 2.5f;
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();  
     }
@@ -32,10 +32,10 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        float magnitude = Mathf.Sqrt(movementDirection.magnitude) * speedZ;
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
+        float magnitude = Mathf.Sqrt(movementDirection.magnitude);
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
-        movementDirection.Normalize();
+        
 
         speedY += Physics.gravity.y * Time.deltaTime;   // Decreases the Y speed in 9.81 every second
 
@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isOnGround = false;
-                speedY = jumpSpeed;
                 animator.SetBool("isJumping", true);
+                speedY = jumpSpeed;
             }
         }
             
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = speedY;
-        characterController.Move(velocity * Time.deltaTime);
+        characterController.Move(velocity * speedZ * Time.deltaTime);
 
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
