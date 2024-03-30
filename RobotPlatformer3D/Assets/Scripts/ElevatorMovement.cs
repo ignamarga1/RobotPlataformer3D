@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class ElevatorMovement : MonoBehaviour
 {
-    public float rotationAngleZ;
-    public GameObject platform;
-
-    public float oscillationSpeed;   // Velocidad de oscilación
-    public float oscillationDistance; // Distancia de oscilación en grados
-
+    public float oscillationSpeed;
+    public float oscillationDistance;
     private float direction;
 
+    public GameObject platform;
 
     // Start is called before the first frame update
     void Start()
     {
-        rotationAngleZ = 90;
         oscillationSpeed = 1f;
         oscillationDistance = 90f;
         direction = 1.0f;
@@ -25,12 +21,12 @@ public class ElevatorMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        platform.transform.rotation = Quaternion.identity;
+        platform.transform.rotation = Quaternion.identity;  // Makes the platform avoid the rotation of the axis
 
         float angle = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
-        transform.rotation = Quaternion.Euler(0, 0, angle * direction);
+        transform.rotation = Quaternion.Euler(0, 0, angle * direction);     // Rotates de axis
 
-        // Cambiar la dirección si llegamos al extremo
+        // Changes the direction when the oscillation has finished
         if (Mathf.Abs(angle) >= oscillationDistance)
         {
             direction *= -1;

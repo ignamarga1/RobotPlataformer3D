@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class KeyRotation : MonoBehaviour
 {
-    public float distanciaMaxima;    // Distancia máxima a la que se moverá hacia arriba
-    public float velocidad;          // Velocidad del movimiento
+    public float maxDistanceY;    
+    public float speed;          
 
     private Vector3 posicionInicial; 
 
     // Start is called before the first frame update
     void Start()
     {
-        distanciaMaxima = 1f;
-        velocidad = 3f;
+        maxDistanceY = 1f;
+        speed = 3f;
         posicionInicial = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float desplazamiento = Mathf.Sin(Time.time * velocidad) * distanciaMaxima;
-        Vector3 nuevaPosicion = posicionInicial + Vector3.up * desplazamiento;
+        float distanceY = Mathf.Sin(Time.time * speed) * maxDistanceY;
+        Vector3 newPosition = posicionInicial + Vector3.up * distanceY;
 
-        // Actualizamos la posición del GameObject
-        transform.position = nuevaPosicion;
+        // Updates the gameObject position
+        transform.position = newPosition;
     }
 }
