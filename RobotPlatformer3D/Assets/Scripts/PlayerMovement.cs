@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedZ;
     public float rotationSpeed;
     public float jumpSpeed;
-    public float speedY;
+    private float speedY;
 
     private Animator animator;
     private CharacterController characterController;
@@ -34,14 +34,14 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
         float magnitude = Mathf.Sqrt(movementDirection.magnitude);
-        movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
+        movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Camera adjustment smoothed
         
 
         speedY += Physics.gravity.y * Time.deltaTime;   // Decreases the Y speed in 9.81 every second
 
         //transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
 
-        // Salto del personaje
+        // Player jump
         if(characterController.isGrounded)
         {
             isOnGround = true;
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    // Personaje giro mejorado
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    // Player rotation improved
 
             animator.SetBool("isMoving", true);
         }
