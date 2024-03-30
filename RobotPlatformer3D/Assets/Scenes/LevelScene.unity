@@ -1011,8 +1011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df580f06259af86438226e15f39cb265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaxima: 1
-  velocidad: 1
+  maxDistanceY: 0
+  speed: 0
 --- !u!1 &628710248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2695cddcadeae408cfba2347b3984f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oscillationSpeed: 1
+  oscillationDistance: 45
+  platform: {fileID: 399810932}
 --- !u!1 &1508658539
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speedZ = 20;
-    float rotationSpeed = 720;
-    float jumpForce = 10;
-    //float gravity = -9.81f;
-    //float jumpHeight = 3;
-    //Vector3 velocity;
+    public float speedZ = 20;
+    public float rotationSpeed = 720;
+    public float jumpForce = 10;
+    
+    public float jumpSpeed = 15;
+    public float speedY;
 
     private Animator animator;
     private Rigidbody rb;
@@ -36,16 +36,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
         movementDirection.Normalize();
+
+        speedY += Physics.gravity.y * Time.deltaTime;
         transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
 
+
         // Salto del personaje
-        if(isOnGround && Input.GetKeyDown(KeyCode.Space)) 
+        if (isOnGround) 
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-            animator.SetBool("isJumping", true);
+            speedY = -0.5f;
+            if(Input.GetKeyDown(KeyCode.Space)) 
+            {
+                //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                speedY = jumpSpeed;
+                isOnGround = false;
+                animator.SetBool("isJumping", true);
+            }
         }
-        
+
+        Vector3 velocity = movementDirection;
+        velocity.y = speedY;
+        transform.Translate(velocity * Time.deltaTime, Space.World);
+
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
         {
