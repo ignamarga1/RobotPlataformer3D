@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speedZ = 20;
-    public float rotationSpeed = 720;
+    public float speedZ;
+    public float rotationSpeed;
+    public float jumpSpeed;
+    public float speedY;
 
     private Animator animator;
-    private Rigidbody rb;
     public Transform transformCamera;
+    public CharacterController characterController;
 
     private bool isOnGround;
 
     // Start is called before the first frame update
     void Start()
     {
+        speedZ = 20;
+        rotationSpeed = 720;
+        jumpSpeed = 10;
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();  
     }
 
     // Update is called once per frame
@@ -28,22 +33,33 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        float magnitude = Mathf.Sqrt(movementDirection.magnitude) * speedZ;
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
+        speedY += Physics.gravity.y * Time.deltaTime;   // Decreases the Y speed in 9.81 every second
 
+        //transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
 
         // Salto del personaje
-        if (isOnGround)
+        if(characterController.isGrounded)
         {
+            isOnGround = true;
+            animator.SetBool("isJumping", false);
+            speedY = -0.5f;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isOnGround = false;
+                speedY = jumpSpeed;
                 animator.SetBool("isJumping", true);
             }
-        }  
+        }
+            
+        
 
+        Vector3 velocity = movementDirection * magnitude;
+        velocity.y = speedY;
+        characterController.Move(velocity * Time.deltaTime);
 
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
@@ -56,15 +72,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Suelo"))
-        {
-            isOnGround = true;
-            animator.SetBool("isJumping", false);
         }
     }
 }
