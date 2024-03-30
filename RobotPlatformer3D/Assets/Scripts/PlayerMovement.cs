@@ -8,12 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 720;
     public float jumpForce = 10;
 
-    public float jumpSpeed = 15;
-    public float speedY;
-
     private Animator animator;
     private Rigidbody rb;
-    public Transform transformCamera; 
+    public Transform transformCamera;
 
     private bool isOnGround;
 
@@ -30,42 +27,36 @@ public class PlayerMovement : MonoBehaviour
         // Movimiento vertical y horizontal
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        //transform.Translate(Vector3.forward * verticalInput * velZ * Time.deltaTime);
-        //transform.Rotate(Vector3.up * horizontalInput * velRot * Time.deltaTime);
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
         movementDirection.Normalize();
 
-        speedY += Physics.gravity.y * Time.deltaTime;
         transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
 
 
         // Salto del personaje
-        if (isOnGround) 
+        if (isOnGround)
         {
-            speedY = -0.5f;
-            if (Input.GetKeyDown(KeyCode.Space)) 
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                speedY = jumpSpeed;
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 animator.SetBool("isJumping", true);
             }
         }
 
-        Vector3 velocity = movementDirection;
-        velocity.y = speedY;
-        transform.Translate(velocity * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.up * Time.deltaTime, Space.World);
 
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed*Time.deltaTime);    // Personaje giro mejorado
-            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);    // Personaje giro mejorado
+
             animator.SetBool("isMoving", true);
-        } else
+        }
+        else
         {
             animator.SetBool("isMoving", false);
         }
@@ -73,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Suelo"))
+        if (collision.gameObject.CompareTag("Suelo"))
         {
             isOnGround = true;
             animator.SetBool("isJumping", false);
