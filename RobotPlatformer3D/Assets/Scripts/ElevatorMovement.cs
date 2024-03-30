@@ -24,7 +24,7 @@ public class ElevatorMovement : MonoBehaviour
         platform.transform.rotation = Quaternion.identity;  // Makes the platform avoid the rotation of the axis
 
         float angle = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
-        transform.rotation = Quaternion.Euler(0, 0, angle * direction);     // Rotates de axis
+        transform.rotation = Quaternion.Euler(0, 0, angle * direction);     // Rotates the axis
 
         // Changes the direction when the oscillation has finished
         if (Mathf.Abs(angle) >= oscillationDistance)
