@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class KeyRotation : MonoBehaviour
 {
-    public float distanciaMaxima = 0.5f;    // Distancia máxima a la que se moverá hacia arriba
-    public float velocidad = 2.0f;          // Velocidad del movimiento
+    public float distanciaMaxima;    // Distancia máxima a la que se moverá hacia arriba
+    public float velocidad;          // Velocidad del movimiento
 
     private Vector3 posicionInicial; 
 
     // Start is called before the first frame update
     void Start()
     {
+        distanciaMaxima = 1f;
+        velocidad = 3f;
         posicionInicial = transform.position;
     }
 
