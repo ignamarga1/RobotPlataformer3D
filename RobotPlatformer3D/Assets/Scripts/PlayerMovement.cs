@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         speedZ = 20;
         rotationSpeed = 720;
-        jumpSpeed = 2.5f;
+        jumpSpeed = 3f;
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();  
     }
