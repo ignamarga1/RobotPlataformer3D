@@ -55,8 +55,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
             
-        
-
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = speedY;
         characterController.Move(velocity * speedZ * Time.deltaTime);

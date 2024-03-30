@@ -25,8 +25,5 @@ public class ElevatorMovement : MonoBehaviour
 
         float angle = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
         transform.rotation = Quaternion.Euler(0, 0, angle * direction);     // Rotates the axis
-
-        // Changes the direction when the oscillation has finished
-        
     }
 }
