@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speedZ = 20;
     public float rotationSpeed = 720;
-    public float jumpForce = 10;
 
     private Animator animator;
     private Rigidbody rb;
@@ -40,13 +39,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
                 animator.SetBool("isJumping", true);
             }
-        }
+        }  
 
-        transform.Translate(Vector3.up * Time.deltaTime, Space.World);
 
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
