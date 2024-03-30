@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedZ = 20;
     public float rotationSpeed = 720;
     public float jumpForce = 10;
-    
+
     public float jumpSpeed = 15;
     public float speedY;
 
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (isOnGround) 
         {
             speedY = -0.5f;
-            if(Input.GetKeyDown(KeyCode.Space)) 
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 speedY = jumpSpeed;
@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         // Si el personaje se esté moviendo
         if (movementDirection != Vector3.zero)
         {
-            //transform.forward = movementDirection;  // Para que el personaje se gire
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed*Time.deltaTime);    // Personaje giro mejorado
             
