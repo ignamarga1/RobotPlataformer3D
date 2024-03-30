@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speedZ = 12;
-    float rotationSpeed = 540;
-    float jumpForce = 15;
+    float speedZ = 20;
+    float rotationSpeed = 720;
+    float jumpForce = 10;
     //float gravity = -9.81f;
     //float jumpHeight = 3;
     //Vector3 velocity;
