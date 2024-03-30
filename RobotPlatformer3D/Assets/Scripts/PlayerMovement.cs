@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     float speedZ = 12;
     float rotationSpeed = 540;
     float jumpForce = 15;
+    //float gravity = -9.81f;
+    //float jumpHeight = 3;
+    //Vector3 velocity;
 
     private Animator animator;
     private Rigidbody rb;
@@ -30,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         //transform.Translate(Vector3.forward * verticalInput * velZ * Time.deltaTime);
         //transform.Rotate(Vector3.up * horizontalInput * velRot * Time.deltaTime);
 
-
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Ajuste cámara
         movementDirection.Normalize();
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            animator.SetBool("isJumping", true);
         }
         
         // Si el personaje se esté moviendo
@@ -62,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("Suelo"))
         {
             isOnGround = true;
+            animator.SetBool("isJumping", false);
         }
     }
 }
