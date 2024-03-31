@@ -70,15 +70,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            print("AAAAAAAAAAAAAAAAA");
-            animator.SetBool("isAttacked", true);
-        } else
+        if (other.gameObject.CompareTag("Enemy"))
         {
             animator.SetBool("isAttacked", true);
+        }
+        else
+        {
+            animator.SetBool("isAttacked", false);
         }
     }
 }

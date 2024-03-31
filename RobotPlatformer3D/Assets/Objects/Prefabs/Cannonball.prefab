@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224008629374203974}
   - component: {fileID: 2346734278998101304}
-  - component: {fileID: 4616111188183718829}
+  - component: {fileID: 2942497964655817958}
   m_Layer: 0
   m_Name: Cannonball
   m_TagString: Enemy
@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c9fbe41beac464880975dc576dd271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &4616111188183718829
+  impactForce: 100
+--- !u!135 &2942497964655817958
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
