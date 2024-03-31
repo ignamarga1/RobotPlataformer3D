@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CanonBehaviour : MonoBehaviour
 {
-    public GameObject bullet;
+    public GameObject cannonball;
 
     float lastShotTime = 0;
     float shotInterval = 3f;
 
     private void FixedUpdate()
     {
-        if(Time.time - lastShotTime > shotInterval)
+        if(Time.time > (lastShotTime + shotInterval))
         {
-            GameObject x = Instantiate(bullet, transform.position, transform.rotation);
-            Destroy(x, 10f);
+            GameObject x = Instantiate(cannonball, transform.position, transform.rotation);
+            Destroy(x, 3f);
             lastShotTime = Time.time;
         } 
     }
