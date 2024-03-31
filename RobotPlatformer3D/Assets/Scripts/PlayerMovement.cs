@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private CharacterController characterController;
     public Transform transformCamera;
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +67,18 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            print("AAAAAAAAAAAAAAAAA");
+            animator.SetBool("isAttacked", true);
+        } else
+        {
+            animator.SetBool("isAttacked", true);
         }
     }
 }

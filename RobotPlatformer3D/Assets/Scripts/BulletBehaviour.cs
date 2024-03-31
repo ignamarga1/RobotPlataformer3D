@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    public float impactForce = 100f;
+
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * 50f * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject jugadorImpactado = collider.gameObject;
-        //Código sobre efectos. Ej. activar animación de jugadorImpactado cayendo … y quitarle algo de Salud
-        print("Impacto con " + jugadorImpactado.name);
+        GameObject player = other.gameObject;
+        if(player.gameObject.CompareTag("Player"))
+        {
+            print(gameObject.name + "ha impactado en el jugador");
+        }
     }
 }
