@@ -14,5 +14,6 @@ public class BulletBehaviour : MonoBehaviour
     {
         GameObject jugadorImpactado = collider.gameObject;
         //Código sobre efectos. Ej. activar animación de jugadorImpactado cayendo … y quitarle algo de Salud
+        print("Impacto con " + jugadorImpactado.name);
     }
 }

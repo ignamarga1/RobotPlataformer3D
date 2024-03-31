@@ -1,25 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5959477105469239915
+--- !u!1 &6581346375048413379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1224008629374203974}
+  - component: {fileID: 2346734278998101304}
+  - component: {fileID: 4616111188183718829}
+  m_Layer: 0
+  m_Name: Cannonball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1224008629374203974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581346375048413379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -41, y: 3.7999997, z: -90}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8280054881580164138}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2346734278998101304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581346375048413379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c9fbe41beac464880975dc576dd271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &4616111188183718829
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581346375048413379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &8458344451707651009
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1224008629374203974}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -62,7 +117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
       propertyPath: m_Name
-      value: Cannonball
+      value: Cannonball model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70,35 +125,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3969186403638855424}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8876472064336273819}
+      addedObject: {fileID: 9119651513407617143}
   m_SourcePrefab: {fileID: 100100000, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
---- !u!1 &6806409134110150458 stripped
+--- !u!4 &8280054881580164138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
+  m_PrefabInstance: {fileID: 8458344451707651009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8764984157670702736 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e628bc16279f4247a0229d63201404c, type: 3}
-  m_PrefabInstance: {fileID: 5959477105469239915}
+  m_PrefabInstance: {fileID: 8458344451707651009}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3969186403638855424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6806409134110150458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c9fbe41beac464880975dc576dd271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &8876472064336273819
+--- !u!135 &9119651513407617143
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6806409134110150458}
+  m_GameObject: {fileID: 8764984157670702736}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,4 +157,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.005704219
-  m_Center: {x: 0, y: 0.00003850389, z: 0}
+  m_Center: {x: 0, y: 0.00003850389, z: -9.313226e-10}
