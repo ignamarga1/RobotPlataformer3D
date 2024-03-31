@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyRotation : MonoBehaviour
+public class KeyMovement : MonoBehaviour
 {
     public float maxDistanceY;    
     public float speed;          

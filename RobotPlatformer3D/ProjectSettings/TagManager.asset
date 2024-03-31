@@ -7,6 +7,7 @@ TagManager:
   - Suelo
   - Platform
   - Enemy
+  - Key
   layers:
   - Default
   - TransparentFX
