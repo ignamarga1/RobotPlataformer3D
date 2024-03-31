@@ -4,93 +4,76 @@ using UnityEngine;
 
 public class PlayerTakeAndRelease : MonoBehaviour
 {
-    // Objeto actualmente agarrado por el jugador
-    private GameObject ObjetoObjetivo;
+    
+    private bool takeObject = true; 
+    private bool releaseObject = false;    
 
-    // Variable para rastrear la intención de soltar
-    private bool intencionSoltar = false;
+    private GameObject objectiveObject; // GameObject that the player wants to take
+    public GameObject gripPosition;     // Empty gameObject with the position where the objective will be taken
 
-    // Variable para rastrear la intención de tomar
-    private bool intencionTomar = true; // Al principio, la intención de tomar es verdadera
+    public float releaseDistance;  
+    public float releaseHeight;
 
-    // GameObject vacío para posicionar el objeto objetivo
-    public GameObject puntoDeAgarre;
-
-    // Distancia desde el jugador para soltar el objeto
-    public float distanciaSoltar = 2f;
-    public float alturaSoltar = 8f;
-
-    // Referencia al CharacterController
-    private CharacterController characterController;
+    private CharacterController characterController;   
 
     // Start is called before the first frame update
     void Start()
     {
-        alturaSoltar = 8f;
+        releaseDistance = 7f;
+        releaseHeight = 5f;
         characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && ObjetoObjetivo != null)
+        // Uses 'Q' key to release the object
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            intencionSoltar = true;
+            releaseObject = true;
         }
 
-        if (intencionSoltar)
+        if (releaseObject)
         {
-            // intención de soltar el objeto
-            SoltaObjeto();
+            objectiveObject.transform.SetParent(null); 
+
+            // Checks if the object doesn't have a RigidBody
+            if (objectiveObject.GetComponent<Rigidbody>() != null)
+            {
+                objectiveObject.GetComponent<Rigidbody>().isKinematic = false;  // Object gets physics behaviour
+            }
+            
+            // Desactivates the KeyMovement script (avoids the object go back to original position when released)
+            objectiveObject.GetComponent<KeyMovement>().enabled = false; 
+
+
+            Vector3 releasePosition = transform.position + transform.forward * releaseDistance; // Position where the object will be released
+            releasePosition += Vector3.up * releaseHeight;          // releasePosition height adjustment
+            objectiveObject.transform.position = releasePosition;   // Object position to releasePosition
+
+            objectiveObject = null; 
+            takeObject = true; 
+            releaseObject = false; 
         }
     }
-
-    private void SoltaObjeto()
-    {
-        // Suelta el objeto
-        ObjetoObjetivo.transform.SetParent(null); // el objeto deja de tener padre
-
-        if (ObjetoObjetivo.GetComponent<Rigidbody>() != null)
-            ObjetoObjetivo.GetComponent<Rigidbody>().isKinematic = false; // si tiene rigidbody, se vuelve físico
-
-        ObjetoObjetivo.GetComponent<KeyMovement>().enabled = false; // Desactiva el script KeyRotation
-
-        // Calcula la posición frente al jugador para soltar el objeto
-        Vector3 posicionSoltar = transform.position + transform.forward * distanciaSoltar;
-
-        // Ajusta la posición de soltar para que esté más alto
-        posicionSoltar += Vector3.up * alturaSoltar;
-
-        ObjetoObjetivo.transform.position = posicionSoltar; // Establece la posición del objeto para soltarlo
-
-        ObjetoObjetivo = null; // restablecer el objeto objetivo
-
-        intencionTomar = true; // Cambiar la intención de tomar de vuelta a true
-        intencionSoltar = false; // Cambiar la intención de soltar a false
-    }
-
-
-
 
     private void OnTriggerEnter(Collider other)
     {
-        // Un Collider con Trigger toca un objeto
-        if (intencionTomar && (ObjetoObjetivo == null) && (other.gameObject.tag == "Key"))
+        // Player can take the object and collides with the object with the Key tag
+        if (takeObject && (other.gameObject.tag == "Key"))
         {
-            // El objeto pasa a ser hijo del punto de agarre
-            other.gameObject.transform.SetParent(puntoDeAgarre.transform);
-
-            // Posicionando el objeto en el punto de agarre
+            other.gameObject.transform.SetParent(gripPosition.transform);  // Makes object child of the gripPosition of the Player
             other.gameObject.transform.localPosition = Vector3.zero;
 
+            // Checks if the object doesn't have a RigidBody
             if (other.gameObject.GetComponent<Rigidbody>() != null)
-                other.gameObject.GetComponent<Rigidbody>().isKinematic = true; // el objeto se vuelve cinemático
+            {
+                other.gameObject.GetComponent<Rigidbody>().isKinematic = true; // Kinematic behaviour when it has rigidBody
+            }
 
-            other.gameObject.GetComponent<KeyMovement>().enabled = false; // Desactiva el script KeyRotation
-
-            ObjetoObjetivo = other.gameObject; // establecer el nuevo objeto objetivo
-
-            intencionTomar = false; // Cambiar la intención de tomar a false una vez que se toma el objeto
+            other.gameObject.GetComponent<KeyMovement>().enabled = false;   // Desactivates the KeyMovement script 
+            objectiveObject = other.gameObject;     
+            takeObject = false;                     
         }
     }
 }
