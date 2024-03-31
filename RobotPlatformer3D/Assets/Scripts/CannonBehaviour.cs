@@ -7,7 +7,7 @@ public class CanonBehaviour : MonoBehaviour
     public GameObject cannonball;
 
     float lastShotTime = 0;
-    float shotInterval = 3f;
+    float shotInterval = 1f;
 
     private void FixedUpdate()
     {

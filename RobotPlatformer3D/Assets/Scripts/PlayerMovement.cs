@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     public Transform transformCamera;
 
-    private bool isOnGround;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +44,10 @@ public class PlayerMovement : MonoBehaviour
         // Player jump
         if(characterController.isGrounded)
         {
-            isOnGround = true;
             animator.SetBool("isJumping", false);
             speedY = -0.5f;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isOnGround = false;
                 animator.SetBool("isJumping", true);
                 speedY = jumpSpeed;
             }

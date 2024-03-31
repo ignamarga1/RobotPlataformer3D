@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 37791493}
   - component: {fileID: 37791492}
   - component: {fileID: 37791491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 3 Level 0
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 61978580}
   - component: {fileID: 61978579}
   - component: {fileID: 61978578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 1 Level 0
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 471546019}
   - component: {fileID: 471546018}
   - component: {fileID: 471546017}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 4 Level 0
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 480833888}
   - component: {fileID: 480833887}
   - component: {fileID: 480833886}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ramp 2
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ Transform:
   m_GameObject: {fileID: 480833884}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 37.5, y: 14.55, z: -80.6}
+  m_LocalPosition: {x: 37.5, y: 14.6, z: -80.6}
   m_LocalScale: {x: 25, y: 60, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2038,7 +2038,7 @@ GameObject:
   - component: {fileID: 1128537466}
   - component: {fileID: 1128537465}
   - component: {fileID: 1128537464}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ramp 3
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -2054,7 +2054,7 @@ Transform:
   m_GameObject: {fileID: 1128537462}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 39.5, z: 7.92}
+  m_LocalPosition: {x: 0, y: 39.5, z: 8.11}
   m_LocalScale: {x: 25, y: 40, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 1180053634}
   - component: {fileID: 1180053633}
   - component: {fileID: 1180053632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 1 Level 2
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -2299,8 +2299,8 @@ Transform:
   m_GameObject: {fileID: 1180053630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 52.5, z: 90}
-  m_LocalScale: {x: 120, y: 5, z: 10}
+  m_LocalPosition: {x: 0, y: 55, z: 90}
+  m_LocalScale: {x: 120, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1059897330}
@@ -2661,7 +2661,7 @@ GameObject:
   - component: {fileID: 1293878988}
   - component: {fileID: 1293878987}
   - component: {fileID: 1293878986}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Platform2
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3175,7 +3175,7 @@ GameObject:
   - component: {fileID: 1508658543}
   - component: {fileID: 1508658542}
   - component: {fileID: 1508658541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 3 Level 2
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3191,8 +3191,8 @@ Transform:
   m_GameObject: {fileID: 1508658539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55, y: 52.5, z: 55}
-  m_LocalScale: {x: 10, y: 5, z: 60}
+  m_LocalPosition: {x: -55, y: 55, z: 55}
+  m_LocalScale: {x: 10, y: 10, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1059897330}
@@ -3342,7 +3342,7 @@ GameObject:
   - component: {fileID: 1679715557}
   - component: {fileID: 1679715556}
   - component: {fileID: 1679715555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 2 Level 0
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3447,7 +3447,7 @@ GameObject:
   - component: {fileID: 1693806039}
   - component: {fileID: 1693806038}
   - component: {fileID: 1693806037}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 2 Level 2
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3463,8 +3463,8 @@ Transform:
   m_GameObject: {fileID: 1693806035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55, y: 52.5, z: 55}
-  m_LocalScale: {x: 10, y: 5, z: 60}
+  m_LocalPosition: {x: 55, y: 55, z: 55}
+  m_LocalScale: {x: 10, y: 10, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1059897330}
@@ -3758,7 +3758,7 @@ GameObject:
   - component: {fileID: 1806355655}
   - component: {fileID: 1806355654}
   - component: {fileID: 1806355653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall 1 Level 1
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3969,7 +3969,7 @@ GameObject:
   - component: {fileID: 2108024104}
   - component: {fileID: 2108024103}
   - component: {fileID: 2108024102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ramp 1
   m_TagString: Suelo
   m_Icon: {fileID: 0}
@@ -3985,7 +3985,7 @@ Transform:
   m_GameObject: {fileID: 2108024100}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: -37.5, y: 14.55, z: -80.6}
+  m_LocalPosition: {x: -37.5, y: 14.6, z: -80.6}
   m_LocalScale: {x: 25, y: 60, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4074,7 +4074,7 @@ GameObject:
   - component: {fileID: 2133458332}
   - component: {fileID: 2133458331}
   - component: {fileID: 2133458330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Platform1
   m_TagString: Suelo
   m_Icon: {fileID: 0}
