@@ -72,7 +72,7 @@ public class PlayerTakeAndRelease : MonoBehaviour
             }
 
             other.gameObject.GetComponent<KeyMovement>().enabled = false;   // Desactivates the KeyMovement script 
-            objectiveObject = other.gameObject;     
+            objectiveObject = other.gameObject;     // Gets the object
             takeObject = false;                     
         }
     }
