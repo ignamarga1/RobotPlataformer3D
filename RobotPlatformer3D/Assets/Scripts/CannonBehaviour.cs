@@ -7,14 +7,14 @@ public class CanonBehaviour : MonoBehaviour
     public GameObject cannonball;
 
     float lastShotTime = 0;
-    float shotInterval = 1f;
+    float shotInterval = 1.25f;
 
     private void FixedUpdate()
     {
         if(Time.time > (lastShotTime + shotInterval))
         {
             GameObject x = Instantiate(cannonball, transform.position, transform.rotation);
-            Destroy(x, 0.7f);
+            Destroy(x, 0.75f);
             lastShotTime = Time.time;
         } 
     }
