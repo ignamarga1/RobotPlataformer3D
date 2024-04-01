@@ -28,7 +28,7 @@ public class PlayerTakeAndRelease : MonoBehaviour
     void Update()
     {
         // Uses 'Q' key to release the object
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && objectiveObject != null)
         {
             releaseObject = true;
         }
