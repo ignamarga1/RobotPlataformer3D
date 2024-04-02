@@ -68,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+
+        // Exit game
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
