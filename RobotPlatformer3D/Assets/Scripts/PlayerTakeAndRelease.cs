@@ -14,7 +14,8 @@ public class PlayerTakeAndRelease : MonoBehaviour
     public float releaseDistance;  
     public float releaseHeight;
 
-    private CharacterController characterController;   
+    private CharacterController characterController;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class PlayerTakeAndRelease : MonoBehaviour
         releaseDistance = 7f;
         releaseHeight = 5f;
         characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class PlayerTakeAndRelease : MonoBehaviour
         {
             objectiveObject.transform.SetParent(null); 
 
-            // Checks if the object doesn't have a RigidBody
+            // Checks if the object has a RigidBody
             if (objectiveObject.GetComponent<Rigidbody>() != null)
             {
                 objectiveObject.GetComponent<Rigidbody>().isKinematic = false;  // Object gets physics behaviour
@@ -65,7 +67,7 @@ public class PlayerTakeAndRelease : MonoBehaviour
             other.gameObject.transform.SetParent(gripPosition.transform);  // Makes object child of the gripPosition of the Player
             other.gameObject.transform.localPosition = Vector3.zero;
 
-            // Checks if the object doesn't have a RigidBody
+            // Checks if the object has a RigidBody
             if (other.gameObject.GetComponent<Rigidbody>() != null)
             {
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true; // Kinematic behaviour when it has rigidBody
