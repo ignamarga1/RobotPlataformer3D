@@ -13,8 +13,11 @@ public class EnemyNavigationController : MonoBehaviour
     State state;
 
     public GameObject player;
-    private float playerDetectionRange = 15f;
-    private float rotationSpeed = 720;
+    private float playerDetectionRange = 20f;
+
+    public GameObject spikyball;
+    float lastShotTime = 0;
+    float shotInterval = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +72,7 @@ public class EnemyNavigationController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
-                agent.speed = 20f;
+                agent.speed = 10f;
                 state = State.CHASE;
             }
         }
@@ -78,13 +81,7 @@ public class EnemyNavigationController : MonoBehaviour
     private void Chase()
     {
         agent.SetDestination(player.transform.position);
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-
-        // Calcula la rotación hacia la dirección del jugador
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-
-        // Suaviza la rotación hacia el jugador usando Quaternion.Lerp
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        transform.LookAt(player.transform);
 
         // Si el jugador está dentro del rango de ataque, cambia al estado de ataque
         if (Vector3.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
@@ -101,6 +98,16 @@ public class EnemyNavigationController : MonoBehaviour
 
     private void Attack()
     {
+        if (Time.time > (lastShotTime + shotInterval))
+        {
+            GameObject x = Instantiate(spikyball, transform.position, transform.rotation);
+            Destroy(x, 0.75f);
+            lastShotTime = Time.time;
+        }
+    }
 
+    private void FixedUpdate()
+    {
+        Attack();
     }
 }
