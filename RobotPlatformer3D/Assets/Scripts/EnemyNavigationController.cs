@@ -100,6 +100,7 @@ public class EnemyNavigationController : MonoBehaviour
     {
         if (Time.time > (lastShotTime + shotInterval))
         {
+            transform.position += Vector3.up * 2;
             GameObject x = Instantiate(spikyball, transform.position, transform.rotation);
             Destroy(x, 0.75f);
             lastShotTime = Time.time;
