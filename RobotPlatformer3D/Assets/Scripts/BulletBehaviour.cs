@@ -9,32 +9,25 @@ public class BulletBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        impactForce = 1000f;
-        transform.Translate(Vector3.forward * 50f * Time.deltaTime);
+        impactForce = 1000f;    // Force that the bullet will apply when collides with the player
+        transform.Translate(Vector3.forward * 50f * Time.deltaTime);    // Moves the bullet forward
     }
 
     private void OnTriggerEnter(Collider other)
     {
         GameObject player = other.gameObject;
-        CharacterController jugadorController = player.GetComponent<CharacterController>();
+        CharacterController characterController = player.GetComponent<CharacterController>();
+        
         if (player.gameObject.CompareTag("Player"))
         {
-            print(gameObject.name + "ha impactado en el jugador");
-
-            // Verifica si el objeto impactado tiene un CharacterController
-            if (jugadorController != null)
+            // Checks if the collisioned player has a CharacterController
+            if (characterController != null)
             {
-                // Calcula la dirección del impacto
-                Vector3 direccionImpacto = (player.transform.position - transform.position).normalized;
-                // Aplica movimiento al CharacterController del jugador en la dirección opuesta al impacto
-                jugadorController.Move(direccionImpacto * impactForce * Time.deltaTime);
+                Vector3 impactDirection = (player.transform.position - transform.position).normalized;
+                characterController.Move(impactDirection * impactForce * Time.deltaTime);   // Moves the player in the impactDirection
             }
-
-            //Código sobre efectos. Ej. activar animación de jugadorImpactado cayendo … y quitarle algo de Salud
-            print("Impacto con " + player.name);
-
-            // Destruye la bala después de impactar
-            Destroy(gameObject);
+            
+            Destroy(gameObject);    // Destroys the bullet after colliding with the player
         }
     }
 }
