@@ -22,7 +22,7 @@ public class BaseKeyBehaviour : MonoBehaviour
             animator.SetBool("isKeyInBase", true);  // Makes the chest play the open animation
             finishTime = Time.time;
 
-            Invoke("LoadVictoryScene", 5f);
+            Invoke("LoadVictoryScene", 3f);
         }
     }
 
