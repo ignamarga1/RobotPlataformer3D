@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Movimiento vertical y horizontal
+        // Vertical and horizontal movement
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         float magnitude = Mathf.Sqrt(movementDirection.magnitude);
         movementDirection = Quaternion.AngleAxis(transformCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;   // Camera adjustment smoothed
         
-
         speedY += Physics.gravity.y * Time.deltaTime;   // Decreases the Y speed in 9.81 every second
 
         //transform.Translate(movementDirection * speedZ * Time.deltaTime, Space.World);
@@ -44,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if(characterController.isGrounded)
         {
             animator.SetBool("isJumping", false);
-            speedY = -0.5f;
+            speedY = -0.5f;     // Makes speed in the Y-axis stop decreasing
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetBool("isJumping", true);
@@ -56,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = speedY;
         characterController.Move(velocity * speedZ * Time.deltaTime);
 
-        // Si el personaje se esté moviendo
+        // Checks if the Player is moving
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
