@@ -17,7 +17,7 @@ public class EnemyNavigationController : MonoBehaviour
 
     public GameObject spikyball;
     float lastShotTime = 0;
-    float shotInterval = 2f;
+    float shotInterval = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +84,7 @@ public class EnemyNavigationController : MonoBehaviour
         transform.LookAt(player.transform);
 
         // Si el jugador está dentro del rango de ataque, cambia al estado de ataque
-        if (Vector3.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) <= playerDetectionRange)
         {
             state = State.ATTACK;
         }
@@ -98,6 +98,7 @@ public class EnemyNavigationController : MonoBehaviour
 
     private void Attack()
     {
+        // Dispara balas solo si está en el estado de ataque
         if (Time.time > (lastShotTime + shotInterval))
         {
             transform.position += Vector3.up * 2;
@@ -105,10 +106,11 @@ public class EnemyNavigationController : MonoBehaviour
             Destroy(x, 0.75f);
             lastShotTime = Time.time;
         }
-    }
 
-    private void FixedUpdate()
-    {
-        Attack();
+        // Si el jugador está fuera del rango de ataque, vuelve al estado de persecución
+        if (Vector3.Distance(transform.position, player.transform.position) > playerDetectionRange)
+        {
+            state = State.PATROL;
+        }
     }
 }
