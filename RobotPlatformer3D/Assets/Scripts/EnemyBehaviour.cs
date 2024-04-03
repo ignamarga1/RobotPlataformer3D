@@ -13,7 +13,7 @@ public class EnemyNavigationController : MonoBehaviour
     State state;
 
     public GameObject player;
-    private float playerDetectionRange = 25f;
+    private float playerDetectionRange = 20f;
 
     public GameObject spikyball;
     float lastShotTime = 0;
