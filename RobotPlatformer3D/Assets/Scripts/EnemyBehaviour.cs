@@ -70,7 +70,7 @@ public class EnemyNavigationController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
-                agent.speed = 10f;
+                agent.speed = 15f;
                 state = State.CHASE;
             }
         }
