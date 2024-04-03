@@ -13,7 +13,7 @@ public class EnemyNavigationController : MonoBehaviour
     State state;
 
     public GameObject player;
-    private float playerDetectionRange = 20f;
+    private float playerDetectionRange = 25f;
 
     public GameObject spikyball;
     float lastShotTime = 0;
@@ -24,11 +24,9 @@ public class EnemyNavigationController : MonoBehaviour
     {
         if (agent == null)
         {
-            state = State.PATROL;
-
-            // The first path position the agent has to go is the 0
+            state = State.PATROL;   // Enemies start in the patrol state
             agent = GetComponent<NavMeshAgent>();
-            agent.SetDestination(pathPositions[0].transform.position);   
+            agent.SetDestination(pathPositions[0].transform.position);   // The first path position the agent has to go is the 0
         }
     }
 
@@ -83,13 +81,13 @@ public class EnemyNavigationController : MonoBehaviour
         agent.SetDestination(player.transform.position);
         transform.LookAt(player.transform);
 
-        // Si el jugador está dentro del rango de ataque, cambia al estado de ataque
+        // Checks if the player is in the attack range
         if (Vector3.Distance(transform.position, player.transform.position) <= playerDetectionRange)
         {
             state = State.ATTACK;
         }
 
-        // Si el jugador está fuera del rango de detección, vuelve al estado de patrulla
+        // Checks if the player leaves the attack range
         if (Vector3.Distance(transform.position, player.transform.position) > playerDetectionRange)
         {
             state = State.PATROL;
@@ -98,7 +96,6 @@ public class EnemyNavigationController : MonoBehaviour
 
     private void Attack()
     {
-        // Dispara balas solo si está en el estado de ataque
         if (Time.time > (lastShotTime + shotInterval))
         {
             transform.position += Vector3.up * 2;
@@ -107,7 +104,7 @@ public class EnemyNavigationController : MonoBehaviour
             lastShotTime = Time.time;
         }
 
-        // Si el jugador está fuera del rango de ataque, vuelve al estado de persecución
+        // Checks if the player leaves the attack range, making the enemy changing to Patrol state
         if (Vector3.Distance(transform.position, player.transform.position) > playerDetectionRange)
         {
             state = State.PATROL;
