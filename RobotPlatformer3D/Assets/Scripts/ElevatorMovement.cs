@@ -9,7 +9,7 @@ public class ElevatorMovement : MonoBehaviour
     private float direction;
     private float initialAngle;
     private float currentAngle;
-    private float velocity = 0.0f; // Velocidad actual del suavizado
+    private float velocity = 0.0f; // Smoothing speed
 
     public GameObject platform;
 
@@ -23,15 +23,11 @@ public class ElevatorMovement : MonoBehaviour
 
     void Update()
     {
-        platform.transform.rotation = Quaternion.identity;  // Hace que la plataforma evite la rotación del eje
-
-        // Calcula el ángulo objetivo usando Mathf.Sin
+        platform.transform.rotation = Quaternion.identity;  // Avoids rotation problems
         float targetAngle = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance * direction;
 
-        // Suaviza la transición al ángulo objetivo usando Mathf.SmoothDampAngle
-        currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref velocity, 0.3f);  // 0.3f es el tiempo de suavizado, puedes ajustarlo
-
-        // Aplica la rotación suavizada empezando desde el ángulo inicial
+        // Smooths the targetAngle using SmoothDampAngle
+        currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref velocity, 0.3f);  
         transform.rotation = Quaternion.Euler(0, initialAngle, currentAngle);
     }
 }

@@ -13,11 +13,11 @@ public class EnemyNavigationController : MonoBehaviour
     State state;
 
     public GameObject player;
-    private float playerDetectionRange = 20f;
+    private float playerDetectionRange = 25f;
 
     public GameObject spikyball;
     float lastShotTime = 0;
-    float shotInterval = 1.5f;
+    float shotInterval = 1f;
 
     // Start is called before the first frame update
     void Start()
