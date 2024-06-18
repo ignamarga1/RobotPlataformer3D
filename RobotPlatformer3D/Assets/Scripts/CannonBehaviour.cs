@@ -14,7 +14,7 @@ public class CanonBehaviour : MonoBehaviour
         if(Time.time > (lastShotTime + shotInterval))
         {
             GameObject x = Instantiate(cannonball, transform.position, transform.rotation);
-            Destroy(x, 0.75f);
+            Destroy(x, 1f);
             lastShotTime = Time.time;
         } 
     }
