@@ -11,7 +11,6 @@ public class ElevatorMovement : MonoBehaviour
 
     public GameObject platform;
 
-    // Start is called before the first frame update
     void Start()
     {
         oscillationSpeed = 1f;
@@ -20,8 +19,7 @@ public class ElevatorMovement : MonoBehaviour
         initialAngle = transform.rotation.eulerAngles.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         platform.transform.rotation = Quaternion.identity;  // Makes the platform avoid the rotation of the axis
 
