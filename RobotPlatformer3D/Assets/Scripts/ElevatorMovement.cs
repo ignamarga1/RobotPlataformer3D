@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ElevatorMovement : MonoBehaviour
 {
-    public float oscillationSpeed;
-    public float oscillationDistance;
+    private float oscillationSpeed;
+    private float oscillationDistance;
     private float direction;
+    private float initialAngle;
 
     public GameObject platform;
 
@@ -14,8 +15,9 @@ public class ElevatorMovement : MonoBehaviour
     void Start()
     {
         oscillationSpeed = 1f;
-        oscillationDistance = 90f;
+        oscillationDistance = 100f;
         direction = 1.0f;
+        initialAngle = transform.rotation.eulerAngles.y;
     }
 
     // Update is called once per frame
@@ -24,6 +26,6 @@ public class ElevatorMovement : MonoBehaviour
         platform.transform.rotation = Quaternion.identity;  // Makes the platform avoid the rotation of the axis
 
         float angle = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
-        transform.rotation = Quaternion.Euler(0, 0, angle * direction);     // Rotates the axis
+        transform.rotation = Quaternion.Euler(0, initialAngle, angle * direction);  // Rotates the axis starting from the initial angle
     }
 }
