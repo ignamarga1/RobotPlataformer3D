@@ -23,6 +23,7 @@ public class HealthSystem : MonoBehaviour
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 SceneManager.LoadScene("DeathScene");
+                Cursor.visible = true;
             }
 
             if(health > maxHealth)
